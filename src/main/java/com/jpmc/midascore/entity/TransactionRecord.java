@@ -1,5 +1,6 @@
 package com.jpmc.midascore.entity;
 
+import com.jpmc.midascore.foundation.Incentive;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +11,9 @@ public class TransactionRecord {
 
     @Column(nullable = false)
     private float amount;
+
+    @Column(nullable = true)
+    private float incentive;
 
 
     @ManyToOne
@@ -28,10 +32,12 @@ public class TransactionRecord {
         return id;
     }
 
-    public TransactionRecord() {}
+    public TransactionRecord() {
+    }
 
-    public TransactionRecord(float amount, UserRecord sender, UserRecord recipient) {
+    public TransactionRecord(float amount, float incentive, UserRecord sender, UserRecord recipient) {
         this.amount = amount;
+        this.incentive = incentive;
         this.sender = sender;
         this.recipient = recipient;
     }
@@ -42,6 +48,14 @@ public class TransactionRecord {
 
     public void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    public float getIncentive() {
+        return incentive;
+    }
+
+    public void setIncentive(float incentive) {
+        this.incentive = incentive;
     }
 
     public UserRecord getSender() {
