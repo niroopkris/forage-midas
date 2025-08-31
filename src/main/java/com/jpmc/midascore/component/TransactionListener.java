@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TransactionListener {
     @KafkaListener(topics = "${kafka.topic.transaction}", groupId = "midas-core-group")
-    public void listen(Transaction transaction) {
+    public void listen(String transaction) {
         System.out.println("Received transaction from " + transaction);
     }
 }
